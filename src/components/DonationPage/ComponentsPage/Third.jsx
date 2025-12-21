@@ -4,7 +4,7 @@ import s2 from "../../../assets/images/Donation/9.png";
 import s3 from "../../../assets/images/Donation/10.png";
 import s4 from "../../../assets/images/Donation/11.png";
 
-export default function third() {
+export default function Third() {
   return (
     <div className="w-full bg-white py-16">
       <div className="max-w-6xl mx-auto text-center">

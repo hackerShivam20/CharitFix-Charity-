@@ -11,7 +11,7 @@ import i8 from "../../../assets/images/Donation/circular/4.jpg"
 import i9 from "../../../assets/images/Donation/circular/5.jpg";
 import { IoIosStar } from "react-icons/io";
 
-const first =  function () {
+const First =  function () {
 
     const images = [i5, i6, i7, i8, i9];
 
@@ -115,4 +115,4 @@ const first =  function () {
   );
 }
 
-export default first;
+export default First;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function second() {
+export default function Second() {
   const [activeTab, setActiveTab] = useState("description");
 
   return (
