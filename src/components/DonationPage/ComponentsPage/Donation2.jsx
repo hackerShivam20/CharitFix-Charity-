@@ -1,5 +1,5 @@
-import First from "./first";
-import Second from "./second";
+import First from "./First";
+import Second from "./Second";
 import Third from "./Third";
 
 const Donation2 = () => {
