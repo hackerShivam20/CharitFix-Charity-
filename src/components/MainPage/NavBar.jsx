@@ -1,4 +1,4 @@
-import logo from "../../assets/images/Logo.png";
+import logo from "../../assets/images/logo.png";
 import { MdOutlineSearch, MdMenu, MdClose } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
