@@ -4,7 +4,7 @@ import Page1a from './Page1a'
 const Page1 = () => {
   return (
     <>
-     <Hero heading="Page 1" />
+     <Hero heading="Page" />
      <Page1a />
     </>
   )

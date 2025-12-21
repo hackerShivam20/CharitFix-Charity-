@@ -16,12 +16,16 @@ const AppRoutes = () => {
     <Routes>
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
+        <Route path="/home-2" element={<Home />} />
+        <Route path="/home-3" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/donation" element={<Donation />} />
         <Route path="/donation/content" element={<Donation2 />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/page-1" element={<Page1 />} />
+        <Route path="/page-2" element={<Page1 />} />
+        <Route path="/page-3" element={<Page1 />} />
         <Route path="/login" element={<SignInPage />} />
         <Route path="/register" element={<SignUpPage />} />
         <Route path="*" element={<Error />} />
