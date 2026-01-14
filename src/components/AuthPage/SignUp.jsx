@@ -1,13 +1,42 @@
-import React from "react";
-import { LuEye } from "react-icons/lu";
+import React, { useState } from "react";
+import { LuEye, LuEyeOff } from "react-icons/lu";
 import logo from "../../assets/images/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Register = () => {
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleRegister = () => {
+    const { name, email, password } = formData;
+
+    if (!name || !email || !password) {
+      toast.error("All fields are required");
+      return;
+    }
+
+    localStorage.setItem("charitix_user", JSON.stringify(formData));
+    sessionStorage.setItem("charitix_session", "true");
+
+    toast.success("Registration successful 🎉");
+    setTimeout(() => navigate("/login"), 1500);
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="w-full max-w-md bg-white rounded-xl shadow-2xl p-8">
-        {/* Logo & Title */}
         <div className="flex flex-col items-center mb-6">
           <img src={logo} alt="Charitix Logo" className="h-10 mb-2" />
         </div>
@@ -15,65 +44,66 @@ const Register = () => {
         <div className="mb-4">
           <label className="text-sm text-gray-600">Name</label>
           <input
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
             type="text"
             placeholder="Enter Your Name"
-            className="mt-1 w-full px-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-[#f9f9f9]"
+            className="mt-1 w-full px-4 py-2 border rounded-lg bg-[#f9f9f9]"
           />
         </div>
 
-        {/* Email */}
         <div className="mb-4">
           <label className="text-sm text-gray-600">Email</label>
           <input
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
             type="email"
             placeholder="Enter Your Email"
-            className="mt-1 w-full px-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-[#f9f9f9]"
+            className="mt-1 w-full px-4 py-2 border rounded-lg bg-[#f9f9f9]"
           />
         </div>
 
-        {/* Password */}
         <div className="mb-2">
-          <div className="flex justify-between items-center">
-            <label className="text-sm text-gray-600">Password</label>
-            <button className="text-xs text-emerald-600 hover:underline">
-              Forgot password?
-            </button>
-          </div>
+          <label className="text-sm text-gray-600">Password</label>
           <div className="relative mt-1">
             <input
-              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              type={showPassword ? "text" : "password"}
               placeholder="Enter Password"
-              className="w-full px-4 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-[#f9f9f9]"
+              className="w-full px-4 py-2 border rounded-lg bg-[#f9f9f9]"
             />
-            <LuEye className="absolute right-3 top-2.5 h-4 w-4 text-gray-400 cursor-pointer" />
+
+            {/* 👁️ Toggle Button */}
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-2.5 text-gray-500"
+            >
+              {showPassword ? <LuEyeOff /> : <LuEye />}
+            </button>
           </div>
         </div>
 
-        {/* Login Button */}
-        <button className="w-25 mt-4 bg-emerald-700 hover:bg-emerald-800 text-white py-3 rounded-lg text-sm font-medium">
+        <button
+          onClick={handleRegister}
+          className="w-full mt-4 bg-emerald-700 hover:bg-emerald-800 text-white py-3 rounded-lg cursor-pointer"
+        >
           Register
         </button>
 
-        {/* Register */}
         <p className="text-center text-sm text-gray-500 mt-6">
           Already have an account?{" "}
           <Link
             to="/login"
-            className="text-emerald-600 cursor-pointer hover:underline"
+            className="text-emerald-600 hover:underline cursor-pointer"
           >
             Login
           </Link>
         </p>
-
-        {/* Google Login */}
-        <button className="w-full border rounded-lg py-2 mt-6 flex items-center justify-center gap-2 text-sm text-gray-600 hover:bg-gray-50">
-          <img
-            src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-            alt="Google"
-            className="h-4 w-4"
-          />
-          Register with Google
-        </button>
       </div>
     </div>
   );
